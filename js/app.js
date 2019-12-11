@@ -5,25 +5,23 @@ var storeHours = ['6am','7am','8am','9am', '10am', '11am', '12pm','1pm','2pm','3
 
 
 
-an object// to store info in here you use key data pairs
-var seattle = {
-  name : 'Seattle',
-  minCustomers : 23,
-  maximumCustomers: 65,
-  averageCookies : 6.3,
-  cookierPerHrArray:[],
-  customerPerHrArray:[],
+// an object// to store info in here you use key data pairs
+// var seattle = {
+//   name : 'Seattle',
+//   minCustomers : 23,
+//   maximumCustomers: 65,
+//   averageCookies : 6.3,
+//   cookierPerHrArray:[],
+//   customerPerHrArray:[],
 
-  randomNumberOfCustomers: function() {
-    var random = Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers);
-  
-    return random;
-    console.log(random);
-  },
-  city(Seattle,23,65,6.3);
-};
-"
-seattle.randomNumberOfCustomers();
+//
+//     return random;
+//     console.log(random);
+//   },
+//   city(Seattle,23,65,6.3);
+// };
+//"
+//seattle.randomNumberOfCustomers();
 //this is saying go to seattle and run this function
 // //var Seattle = {
 //  // name: 'Seattle',
@@ -47,224 +45,259 @@ seattle.randomNumberOfCustomers();
 // Constructor names tend to be a singular noun
 // Take in values that we want as parameters
 //pet will be city and breed will be parameters
-function City (name, minCustomers,maximumCustomers,averageCookies) {
+function City(name, minCustomers,maximumCustomers,averageCookies) {
   // Inside constructor, set up the properties we want for objects created with this constructor
   // set key/value pairs on the new object using contextual this
   this.name = name;
   this.minCustomers = minCustomers;
   this.maximumCustomers = maximumCustomers;
   this.averageCookies = averageCookies;
+  this.customersPerHour = [];
   this.cookierPerHrArray = [];
   this.totalcookies = 0;
 }
 
-// Pet.prototype.functionName = function(any, parameters, go, here)
-// Now, any pet created with the Pet constructor will be able to call this method
-// And by using contextual this, we can access the descriptionWords of that specific pet object
-Pet.prototype.getDescription = function() {
-  var randomIndex = Math.floor(Math.random() * this.descriptionWords.length);
-  return this.descriptionWords[randomIndex];
+
+City.prototype.randomNumberOfCustomers = function() {
+  for(var i = 0; i < storeHours.length; i++) {
+    this.customersPerHour.push(random(this.minCustomers, this.maxCustomers));
+  }
 };
 
-// Add a prototype method to render a pet to the table
-// Because it's a prototype method, all pet instances will be able to call this method
-Pet.prototype.render = function() {
-  var animalTable = document.getElementById('animal-table');
-
-  // Create the tr and the td's to hold this pet's data
-  var petRow = document.createElement('tr');
-
-  // create breed td, add it to the row
-  var breedCell = document.createElement('td');
-  breedCell.textContent = this.breed;
-  petRow.appendChild(breedCell);
-
-  // create weight td, add it to the row
-  var weightCell = document.createElement('td');
-  weightCell.textContent = this.weight;
-  petRow.appendChild(weightCell);
-
-  // also add description
-  var descriptionCell = document.createElement('td');
-  descriptionCell.textContent = this.descriptionWords;
-  petRow.appendChild(descriptionCell);
-
-  // add to page by appending the new row of data to the table
-  animalTable.appendChild(petRow);
-};
-
-var firstDog = new Pet('Weimaraner', 35, ['hungry', 'blue eyes', 'good boy', 'cute']);
-var firstCat = new Pet('American shorthair', 5, ['inquisitive', 'needy', 'small', 'whiskery']);
-var lizard = new Pet('iguana', 8, ['green', 'scaly']);
-
-var pets = [firstDog, firstCat, lizard];
-
-var animalHolder = document.getElementById('animal-holder');
-animalHolder.textContent = 'the animals go here';
-
-// error we initially got:
-// cannot set textContent of null
-// which tells us animalHolder is null
-
-// create a p tag inside of the animalHolder for each pet
-for (var i = 0; i < pets.length; i++) {
-  pets[i].render();
-// }
+function random (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 
-
-
-
-var tokyo = {
-  name :'Tokyo',
-  minCutomers: 3,
-  maximumCustomers: 24,
-  averageCookies: 1.2,
-  cookierPerHrArray:[],
-  customerPerHrArray:[],
-  randomNumberOfCustomers: function(){
-    for(var i = 0;i < storeHours.length;i++){
-      this.customerPerHrArray.push(Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers));
-    }
-    return Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers);
-
-    city(Tokyo, 3,24,1.2)
-  },
-};
-
-var dubai = {
-  name: 'Dubai',
-  minCustomers: 11,
-  maximumCustomers: 38,
-  averageCookies: 3.7,
-
-  randomNumberOfCustomers: function(){
-    for(var i = 0;i < storeHours.length;i++){
-      this.customerPerHrArray.push(Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers));
-    }
-    return Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers);
-    city(dubai, 11,38,3.7)
-
-
-  },
-};
-var paris = {
-  name: 'Paris',
-  minCustomers: 20,
-  maximumCustomers: 38,
-  averageCookies:2.3,
-  cookierPerHrArray:[],
-  customerPerHrArray:[],
-
-
-  randomNumberOfCustomers: function(){
-    for(var i = 0;i < storeHours.length;i++){
-      this.customerPerHrArray.push(Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers));
-    }
-    return Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers);
-    city(paris,20,38,2.3)
-
-
-
-  },
-};
-var Lima = {
-  name: 'Lima',
-  minCustomers: 2,
-  maximumCustomers: 16,
-  averageCookies: 4.6,
-  cookierPerHrArray:[],
-  customerPerHrArray:[],
-
-  randomNumberOfCustomers: function(){
-    for(var i = 0;i < storeHours.length;i++){
-      this.customerPerHrArray.push(Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers));
-    }
-    return Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers);
-
-    city(Lima, 2,16,4.6)
-
-
-
-  },
-};
-
+City.prototype.cookiePerHour = function(){
+  this.randomNumberOfCustomers.prototype();
+  for (var i = 0; i < storeHours.length; i++) {
+    var currentHour = Math.ceil(this.customersPerHour[i] * this.averageCookies);
+    //this is for current hour cookie total based on cph and avg cookie ph
+    this.cookierPerHrArray.push(currentHour);
+    console.log(curre);
+    //this keepstrack of total cookies
+    this.totalcookies = this.totalcookies + currentHour;
 
   }
+};
 
-  'use strict';
 
-console.log('js linked!');
-// from michelle.s class demo
-// Constructor!
-// Constructor names tend to be a singular noun
-// Take in values that we want as parameters
-function Pet(breedOfThisPet, weight, descriptionWords) {
-  // Inside constructor, set up the properties we want for objects created with this constructor
-  // set key/value pairs on the new object using contextual this
-  this.breed = breedOfThisPet;
-  // name of parameter and name of property can be the same or different
-  this.weight = weight;
-  this.descriptionWords = descriptionWords;
-}
+
+
 
 // Pet.prototype.functionName = function(any, parameters, go, here)
 // Now, any pet created with the Pet constructor will be able to call this method
 // And by using contextual this, we can access the descriptionWords of that specific pet object
-Pet.prototype.getDescription = function() {
-  var randomIndex = Math.floor(Math.random() * this.descriptionWords.length);
-  return this.descriptionWords[randomIndex];
-};
+// Pet.prototype.getDescription = function() {
+//   var randomIndex = Math.floor(Math.random() * this.descriptionWords.length);
+//   return this.descriptionWords[randomIndex];
+// };
 
 // Add a prototype method to render a pet to the table
 // Because it's a prototype method, all pet instances will be able to call this method
-Pet.prototype.render = function() {
-  var animalTable = document.getElementById('animal-table');
+// Pet.prototype.render = function() {
+//   var animalTable = document.getElementById('animal-table');
 
-  // Create the tr and the td's to hold this pet's data
-  var petRow = document.createElement('tr');
+//   // Create the tr and the td's to hold this pet's data
+//   var petRow = document.createElement('tr');
 
-  // create breed td, add it to the row
-  var breedCell = document.createElement('td');
-  breedCell.textContent = this.breed;
-  petRow.appendChild(breedCell);
+//   // create breed td, add it to the row
+//   var breedCell = document.createElement('td');
+//   breedCell.textContent = this.breed;
+//   petRow.appendChild(breedCell);
 
-  // create weight td, add it to the row
-  var weightCell = document.createElement('td');
-  weightCell.textContent = this.weight;
-  petRow.appendChild(weightCell);
+//   // create weight td, add it to the row
+//   var weightCell = document.createElement('td');
+//   weightCell.textContent = this.weight;
+//   petRow.appendChild(weightCell);
 
-  // also add description
-  var descriptionCell = document.createElement('td');
-  descriptionCell.textContent = this.descriptionWords;
-  petRow.appendChild(descriptionCell);
+//   // also add description
+//   var descriptionCell = document.createElement('td');
+//   descriptionCell.textContent = this.descriptionWords;
+//   petRow.appendChild(descriptionCell);
 
-  // add to page by appending the new row of data to the table
-  animalTable.appendChild(petRow);
-};
+//   // add to page by appending the new row of data to the table
+//   animalTable.appendChild(petRow);
+// };
 
-var firstDog = new Pet('Weimaraner', 35, ['hungry', 'blue eyes', 'good boy', 'cute']);
-var firstCat = new Pet('American shorthair', 5, ['inquisitive', 'needy', 'small', 'whiskery']);
-var lizard = new Pet('iguana', 8, ['green', 'scaly']);
+// var firstDog = new Pet('Weimaraner', 35, ['hungry', 'blue eyes', 'good boy', 'cute']);
+// var firstCat = new Pet('American shorthair', 5, ['inquisitive', 'needy', 'small', 'whiskery']);
+// var lizard = new Pet('iguana', 8, ['green', 'scaly']);
 
-var pets = [firstDog, firstCat, lizard];
+// var pets = [firstDog, firstCat, lizard];
 
-var animalHolder = document.getElementById('animal-holder');
-animalHolder.textContent = 'the animals go here';
+// var animalHolder = document.getElementById('animal-holder');
+// animalHolder.textContent = 'the animals go here';
 
 // error we initially got:
 // cannot set textContent of null
 // which tells us animalHolder is null
 
 // create a p tag inside of the animalHolder for each pet
-for (var i = 0; i < pets.length; i++) {
-  pets[i].render();
-}
-//from Michelles class 6
+// for (var i = 0; i < pets.length; i++) {
+//   pets[i].render();
+// // }
 
 
 
-//var pets = [firstDog, firstCat];
+
+
+// var tokyo = {
+//   name :'Tokyo',
+//   minCutomers: 3,
+//   maximumCustomers: 24,
+//   averageCookies: 1.2,
+//   cookierPerHrArray:[],
+//   customerPerHrArray:[],
+//   randomNumberOfCustomers: function(){
+//     for(var i = 0;i < storeHours.length;i++){
+//       this.customerPerHrArray.push(Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers));
+//     }
+//     return Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers);
+
+//     city(Tokyo, 3,24,1.2)
+// //   },
+// // };
+
+// var dubai = {
+//   name: 'Dubai',
+//   minCustomers: 11,
+//   maximumCustomers: 38,
+//   averageCookies: 3.7,
+
+//   randomNumberOfCustomers: function(){
+//     for(var i = 0;i < storeHours.length;i++){
+//       this.customerPerHrArray.push(Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers));
+//     }
+//     return Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers);
+//     city(dubai, 11,38,3.7)
+
+
+//   },
+// };
+// var paris = {
+//   name: 'Paris',
+//   minCustomers: 20,
+//   maximumCustomers: 38,
+//   averageCookies:2.3,
+//   cookierPerHrArray:[],
+//   customerPerHrArray:[],
+
+
+//   randomNumberOfCustomers: function(){
+//     for(var i = 0;i < storeHours.length;i++){
+//       this.customerPerHrArray.push(Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers));
+//     }
+//     return Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers);
+//     city(paris,20,38,2.3)
+
+
+
+//   },
+new City('Seattle', 23,65,6.3);
+new City('Tokyo',3,24,1.2);
+new City('Lima', 2, 16, 4.6);
+new City('Paris',20,38,2.3);
+new City('Dubai',11,38,3.7)
+
+// var Lima = {
+//   name: 'Lima',
+//   minCustomers: 2,
+//   maximumCustomers: 16,
+//   averageCookies: 4.6,
+//   cookierPerHrArray:[],
+//   customerPerHrArray:[],
+
+//   randomNumberOfCustomers: function(){
+//     for(var i = 0;i < storeHours.length;i++){
+//       this.customerPerHrArray.push(Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers));
+//     }
+//     return Math.ceil(Math.random() * (this.maximumCustomers - this.minCustomers) + this.minCustomers);
+
+//     city('Lima', 2,16,4.6)
+
+
+
+//   },
+// };
+
+
+//   }
+
+//   'use strict';
+
+// console.log('js linked!');
+// // from michelle.s class demo
+// // Constructor!
+// // Constructor names tend to be a singular noun
+// // Take in values that we want as parameters
+// function Pet(breedOfThisPet, weight, descriptionWords) {
+//   // Inside constructor, set up the properties we want for objects created with this constructor
+//   // set key/value pairs on the new object using contextual this
+//   this.breed = breedOfThisPet;
+//   // name of parameter and name of property can be the same or different
+//   this.weight = weight;
+//   this.descriptionWords = descriptionWords;
+// }
+
+// // Pet.prototype.functionName = function(any, parameters, go, here)
+// // Now, any pet created with the Pet constructor will be able to call this method
+// // And by using contextual this, we can access the descriptionWords of that specific pet object
+// Pet.prototype.getDescription = function() {
+//   var randomIndex = Math.floor(Math.random() * this.descriptionWords.length);
+//   return this.descriptionWords[randomIndex];
+// };
+
+// // Add a prototype method to render a pet to the table
+// // Because it's a prototype method, all pet instances will be able to call this method
+// Pet.prototype.render = function() {
+//   var animalTable = document.getElementById('animal-table');
+
+//   // Create the tr and the td's to hold this pet's data
+//   var petRow = document.createElement('tr');
+
+//   // create breed td, add it to the row
+//   var breedCell = document.createElement('td');
+//   breedCell.textContent = this.breed;
+//   petRow.appendChild(breedCell);
+
+//   // create weight td, add it to the row
+//   var weightCell = document.createElement('td');
+//   weightCell.textContent = this.weight;
+//   petRow.appendChild(weightCell);
+
+//   // also add description
+//   var descriptionCell = document.createElement('td');
+//   descriptionCell.textContent = this.descriptionWords;
+//   petRow.appendChild(descriptionCell);
+
+//   // add to page by appending the new row of data to the table
+//   animalTable.appendChild(petRow);
+// };
+
+
+// var firstCat = new Pet('American shorthair', 5, ['inquisitive', 'needy', 'small', 'whiskery']);
+// var lizard = new Pet('iguana', 8, ['green', 'scaly']);
+
+// var pets = [firstDog, firstCat, lizard];
+
+// var animalHolder = document.getElementById('animal-holder');
+// animalHolder.textContent = 'the animals go here';
+
+// // error we initially got:
+// // cannot set textContent of null
+// // which tells us animalHolder is null
+
+// // create a p tag inside of the animalHolder for each pet
+// for (var i = 0; i < pets.length; i++) {
+//   pets[i].render();
+// }
+// //from Michelles class 6
+
+
+
+// //var pets = [firstDog, firstCat];
 
 //var animalHolder = document.getElementById('animal-holder');
 //animalHolder.textContent = 'the animals go here';
@@ -306,7 +339,7 @@ for (var i = 0; i < pets.length; i++) {
 //function Loc1(23, 65) {
 // return Math.random() * (max - min) + min;
 //
-//push values into your cookies per hour array using the random number of customres function.... per lillianb. Taking the stuff I "dsbuilt out" and putting it into 
+//push values into your cookies per hour array using the random number of customres function.... per lillianb. Taking the stuff I "dsbuilt out" and putting it into
 //this is able to add"stores"
 //work on constructors
-//"build out a constructor that has afunction that lets me do the cookies per hour. 
+//"build out a constructor that has afunction that lets me do the cookies per hour.
